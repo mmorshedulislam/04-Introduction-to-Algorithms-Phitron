@@ -4,6 +4,8 @@ using namespace std;
 vector<int> v[1005];
 bool vis[1005];
 
+int cnt = 0;
+
 void bfs(int src)
 {
     queue<int> q;
@@ -42,6 +44,9 @@ int main()
     cin >> src;
     memset(vis, false, sizeof(vis));
     bfs(src);
+
+    cout << endl
+         << cnt;
 
     return 0;
 }

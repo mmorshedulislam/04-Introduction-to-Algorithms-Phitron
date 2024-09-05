@@ -45,23 +45,33 @@ int main()
 
     int src, des;
     cin >> src >> des;
+
     memset(vis, false, sizeof(vis));
     memset(level, -1, sizeof(level));
     memset(parent, -1, sizeof(parent));
+
     bfs(src);
 
     // print
     int x = des;
     vector<int> path;
+
     while (x != -1)
     {
         path.push_back(x);
         x = parent[x];
     }
     reverse(path.begin(), path.end());
+
     for (int val : path)
     {
         cout << val << " ";
+    }
+    cout << endl;
+
+    for (int val : parent)
+    {
+        cout << val << endl;
     }
 
     return 0;
