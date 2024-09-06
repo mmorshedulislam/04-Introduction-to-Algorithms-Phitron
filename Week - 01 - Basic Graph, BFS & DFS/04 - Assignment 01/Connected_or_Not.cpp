@@ -22,7 +22,12 @@ int main()
     {
         int x, y;
         cin >> x >> y;
+        
         if (mat[x][y])
+        {
+            cout << "YES" << endl;
+        }
+        else if (x == y)
         {
             cout << "YES" << endl;
         }

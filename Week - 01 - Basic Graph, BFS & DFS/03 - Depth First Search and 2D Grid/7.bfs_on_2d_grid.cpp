@@ -6,7 +6,7 @@ using namespace std;
 int n, m;
 char a[20][20];
 bool vis[20][20];
-int dis[20][20];
+int des[20][20];
 vector<pair<int, int>> d = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
 bool isValid(int i, int j)
@@ -22,7 +22,7 @@ void bfs_2d(int si, int sj)
     queue<pair<int, int>> q;
     q.push({si, sj});
     vis[si][sj] = true;
-    dis[si][sj] = 0;
+    des[si][sj] = 0;
 
     while (!q.empty())
     {
@@ -40,7 +40,7 @@ void bfs_2d(int si, int sj)
             {
                 q.push({ci, cj});
                 vis[ci][cj] = true;
-                dis[ci][cj] = dis[a][b] + 1;
+                des[ci][cj] = des[a][b] + 1;
             }
         }
     }
@@ -61,11 +61,11 @@ int main()
     cin >> si >> sj;
 
     memset(vis, false, sizeof(vis));
-    memset(dis, -1, sizeof(dis));
+    memset(des, -1, sizeof(des));
     bfs_2d(si, sj);
 
     cout << endl
-         << dis[0][3] << endl; // 3 // shortest destination
+         << des[0][3] << endl; // 3 // shortest destination
     return 0;
 }
 
