@@ -59,26 +59,32 @@ int main()
     }
 
     vector<int> apartmentSizes;
-
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             if (a[i][j] != '#' && !vis[i][j])
             {
-                int size = bfs(i, j);
-                apartmentSizes.push_back(size);
+                int roomCount = bfs(i, j);
+                apartmentSizes.push_back(roomCount);
             }
         }
     }
 
-    sort(apartmentSizes.begin(), apartmentSizes.end());
-
-    for (int size : apartmentSizes)
+    if (apartmentSizes.empty())
     {
-        cout << size << " ";
+        cout << 0 << endl;
     }
-    cout << endl;
+    else
+    {
+        sort(apartmentSizes.begin(), apartmentSizes.end());
+
+        for (int size : apartmentSizes)
+        {
+            cout << size << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
