@@ -2,9 +2,9 @@
 using namespace std;
 
 const int N = 1e5 + 5;
+vector<int> adj[N];
 bool vis[N];
 int parentArr[N];
-vector<int> adj[N];
 bool isCycle;
 
 void dfs(int parent)
