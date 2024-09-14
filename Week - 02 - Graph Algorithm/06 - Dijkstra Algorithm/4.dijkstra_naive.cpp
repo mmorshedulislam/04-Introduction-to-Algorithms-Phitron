@@ -24,7 +24,6 @@ void dijkstra(int src) // O(V * E)
         {
             int childNode = child.first;
             int childCost = child.second;
-
             if (cost + childCost < dis[childNode])
             {
                 // path relax
