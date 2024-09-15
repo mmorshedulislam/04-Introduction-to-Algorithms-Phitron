@@ -29,10 +29,12 @@ int main()
         EdgeList.push_back(Edge(u, v, c));
     }
 
+    // set max value
     for (int i = 0; i < n; i++)
     {
         dis[i] = INT_MAX;
     }
+    // set first value 0
     dis[0] = 0;
 
     // O(V * E)
