@@ -27,6 +27,7 @@ int main()
         int u, v, c;
         cin >> u >> v >> c;
         EdgeList.push_back(Edge(u, v, c));
+        // EdgeList.push_back(Edge(v, u, c)); // if undirected
     }
 
     for (int i = 0; i < n; i++)
@@ -51,21 +52,52 @@ int main()
         }
     }
 
-    for (int i = 0; i < n; i++)
+    bool isCycle = false;
+    for (Edge ed : EdgeList) // O(E)
     {
-        cout << i << " -> " << dis[i] << endl;
+        int u, v, c;
+        u = ed.u;
+        v = ed.v;
+        c = ed.c;
+        if (dis[u] < INT_MAX && dis[u] + c < dis[v])
+        {
+            isCycle = true;
+            break;
+        }
+    }
+    if (isCycle)
+    {
+        cout << "Negative cycle detected. No valid answer found";
+    }
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cout << i << " -> " << dis[i] << endl;
+        }
     }
 
     return 0;
 }
 
 // INPUT
-
+// 3 3
+// 0 1 -1
+// 1 2 2
+// 2 0 -3
 
 // OUTPUT
-
+// Negative cycle detected. No valid answer found
 
 // INPUT
-
+// 4 4
+// 1 3 -3
+// 0 3 5
+// 2 1 1
+// 0 2 -2
 
 // OUTPUT
+// 0 -> 0
+// 1 -> -1
+// 2 -> -2
+// 3 -> -4
