@@ -57,8 +57,6 @@ int main()
         int d, dw;
         cin >> d >> dw;
 
-        cout << d << " " << dis[d] << " " << dw << " ";
-        
         if (dis[d] <= dw)
             cout << "YES" << endl;
         else if (dis[d] == INT_MAX)
