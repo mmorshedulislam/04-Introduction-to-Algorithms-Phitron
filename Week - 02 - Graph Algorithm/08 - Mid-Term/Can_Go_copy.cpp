@@ -13,14 +13,17 @@ public:
     }
 };
 
+const int N = 1e6 + 5;
+int dis[N];
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int n, e, s, t;
+    int n, s, t;
+    long long int e;
     cin >> n >> e;
-    int dis[n];
     vector<Edge> EdgeList;
 
     while (e--)
@@ -30,7 +33,7 @@ int main()
         EdgeList.push_back(Edge(a, b, w));
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < N; i++)
     {
         dis[i] = INT_MAX;
     }
@@ -54,9 +57,8 @@ int main()
     cin >> t;
     while (t--)
     {
-        int d, dw;
+        long long int d, dw;
         cin >> d >> dw;
-
         if (dis[d] <= dw)
             cout << "YES" << endl;
         else if (dis[d] == INT_MAX)
