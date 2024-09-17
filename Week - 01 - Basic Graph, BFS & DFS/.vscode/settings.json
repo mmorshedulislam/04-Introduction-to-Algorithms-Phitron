@@ -6,6 +6,8 @@
     "vector": "cpp",
     "deque": "cpp",
     "xstring": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "xlocinfo": "cpp",
+    "xutility": "cpp"
   }
 }

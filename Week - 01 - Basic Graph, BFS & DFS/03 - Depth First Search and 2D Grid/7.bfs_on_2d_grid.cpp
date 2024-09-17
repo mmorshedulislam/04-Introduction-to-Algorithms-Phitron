@@ -7,6 +7,7 @@ int n, m;
 char a[20][20];
 bool vis[20][20];
 int des[20][20];
+// right, left, top, bottom
 vector<pair<int, int>> d = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
 bool isValid(int i, int j)
