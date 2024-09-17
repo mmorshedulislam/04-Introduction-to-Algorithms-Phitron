@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// kono node er sathe kara kara connected
+
 int main()
 {
     int n, e;
@@ -17,9 +19,14 @@ int main()
         mat[b].push_back(a); // if undirected graph
     }
 
-    for (int x : mat[0])
+    for (int i = 0; i < n; i++)
     {
-        cout << x << " "; // 1 4 3
+        cout << i << " -> ";
+        for (int x : mat[i])
+        {
+            cout << x << " ";
+        }
+        cout << endl;
     }
 
     return 0;
@@ -35,4 +42,9 @@ int main()
 // 2 4
 
 // output
-// 1 4 3 
+// 0 -> 1 4 3
+// 1 -> 0 5
+// 2 -> 4
+// 3 -> 0 4
+// 4 -> 0 3 2
+// 5 -> 1

@@ -1,22 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// kono node er sathe kon node connected
+
 int main()
 {
     int n, e;
     cin >> n >> e;
-    vector<pair<int, int>> v;
+    vector<pair<int, int>> EdgeList;
 
     while (e--)
     {
         int a, b;
         cin >> a >> b;
-        v.push_back({a, b});
+        EdgeList.push_back({a, b});
     }
 
-    for (pair<int, int> p : v)
+    for (pair<int, int> edge : EdgeList)
     {
-        cout << p.first << " " << p.second << endl;
+        cout << edge.first << " " << edge.second << endl;
     }
 
     return 0;

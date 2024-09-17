@@ -2,7 +2,7 @@
 using namespace std;
 
 const int N = 1e5 + 5;
-vector<int> v[N];
+vector<int> adj[N];
 bool vis[N];
 
 void dfs(int src)
@@ -10,7 +10,7 @@ void dfs(int src)
     cout << src << endl;
     vis[src] = true;
     
-    for (int child : v[src])
+    for (int child : adj[src])
     {
         if (vis[child] == false)
         {
@@ -27,8 +27,8 @@ int main()
     {
         int a, b;
         cin >> a >> b;
-        v[a].push_back(b);
-        v[b].push_back(a);
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
 
     memset(vis, false, sizeof(vis));

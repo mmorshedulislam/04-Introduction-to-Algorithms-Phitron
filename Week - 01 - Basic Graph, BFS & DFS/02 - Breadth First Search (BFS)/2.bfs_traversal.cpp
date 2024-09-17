@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> v[1005];
+vector<int> adj[1005];
 bool vis[1005];
 
 int cnt = 0;
@@ -17,7 +17,7 @@ void bfs(int src)
         int par = q.front();
         q.pop();
         cout << par << endl;
-        for (int child : v[par])
+        for (int child : adj[par])
         {
             if (vis[child] == false)
             {
@@ -36,8 +36,8 @@ int main()
     {
         int a, b;
         cin >> a >> b;
-        v[a].push_back(b);
-        v[b].push_back(a);
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
 
     int src;

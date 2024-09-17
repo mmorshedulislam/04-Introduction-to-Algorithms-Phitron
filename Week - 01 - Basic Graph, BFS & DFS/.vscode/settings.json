@@ -3,6 +3,9 @@
     "*.embeddedhtml": "html",
     "*.c": "c",
     "*.cpp": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "deque": "cpp",
+    "xstring": "cpp",
+    "queue": "cpp"
   }
 }

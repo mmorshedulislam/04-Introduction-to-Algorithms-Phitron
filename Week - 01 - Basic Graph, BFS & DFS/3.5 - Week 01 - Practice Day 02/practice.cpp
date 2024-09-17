@@ -69,6 +69,11 @@ int main()
     }
     cout << endl;
 
+    for (int val : parent)
+    {
+        cout << val << endl;
+    }
+
     return 0;
 }
 

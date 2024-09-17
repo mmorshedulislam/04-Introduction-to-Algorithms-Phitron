@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// quickly value access korar jonno or kono node connect ace ki nai check korar jonno
+
 int main()
 {
     int n, e;
