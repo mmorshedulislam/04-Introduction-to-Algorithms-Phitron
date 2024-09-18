@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int N = 1e6 + 5;
+int dis[N];
+
 class Edge
 {
 public:
@@ -13,15 +16,9 @@ public:
     }
 };
 
-const int N = 1e6 + 5;
-int dis[N];
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int n, s, t;
+    int n, t;
     long long int e;
     cin >> n >> e;
     vector<Edge> EdgeList;
@@ -30,19 +27,21 @@ int main()
     {
         int a, b, w;
         cin >> a >> b >> w;
-        EdgeList.push_back(Edge(a - 1, b - 1, w)); // Convert to zero-based index
+        a--, b--;
+        EdgeList.push_back(Edge(a, b, w));
     }
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
         dis[i] = INT_MAX;
     }
+
+    int s;
     cin >> s;
-    s--; // Convert to zero-based index
+    s--;
     dis[s] = 0;
 
-    // Bellman-Ford algorithm to calculate shortest distances
-    for (int i = 1; i <= n - 1; i++) // Do this n-1 times
+    for (int i = 1; i <= n - 1; i++)
     {
         for (Edge ed : EdgeList)
         {
@@ -54,25 +53,35 @@ int main()
             }
         }
     }
-
-    cin >> t;
-    while (t--)
+    bool isCycle = false;
+    for (Edge ed : EdgeList)
     {
-        long long int d, dw;
-        cin >> d >> dw;
-        d--; // Convert to zero-based index
+        int a = ed.a, b = ed.b, w = ed.w;
 
-        if (dis[d] == INT_MAX) // No path found
+        if (dis[a] < INT_MAX && dis[a] + w < dis[b])
         {
-            cout << "Not Possible" << endl;
+            isCycle = true;
         }
-        else if (dis[d] <= dw) // If distance is within the allowed threshold
+    }
+
+    if (isCycle)
+        cout << "Negative Cycle Detected" << endl;
+    else
+    {
+        cin >> t;
+        while (t--)
         {
-            cout << dis[d] << endl; // Print the shortest distance
-        }
-        else
-        {
-            cout << "Not Possible" << endl; // If no valid path or distance is too high
+            int d;
+            cin >> d;
+            d--;
+            if (dis[d] == INT_MAX)
+            {
+                cout << "Not Possible" << endl;
+            }
+            else
+            {
+                cout << dis[d] << endl;
+            }
         }
     }
 
