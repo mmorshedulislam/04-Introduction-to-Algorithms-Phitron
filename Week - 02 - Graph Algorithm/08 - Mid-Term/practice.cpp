@@ -2,13 +2,14 @@
 using namespace std;
 
 const int N = 1e6 + 5;
-int dis[N];
+long long int dis[N];
 
 class Edge
 {
 public:
-    int a, b, w;
-    Edge(int a, int b, int w)
+    int a, b;
+    long long int w;
+    Edge(int a, int b, long long int w)
     {
         this->a = a;
         this->b = b;
@@ -18,71 +19,53 @@ public:
 
 int main()
 {
-    int n, t;
+    int n, s, t;
     long long int e;
     cin >> n >> e;
     vector<Edge> EdgeList;
 
     while (e--)
     {
-        int a, b, w;
+        int a, b;
+        long long int w;
         cin >> a >> b >> w;
-        a--, b--;
-        EdgeList.push_back(Edge(a, b, w));
+        EdgeList.push_back(Edge(a - 1, b - 1, w));
     }
 
     for (int i = 0; i < n; i++)
     {
-        dis[i] = INT_MAX;
+        dis[i] = LLONG_MAX;
     }
-
-    int s;
     cin >> s;
-    s--;
-    dis[s] = 0;
+    dis[s - 1] = 0;
 
     for (int i = 1; i <= n - 1; i++)
     {
         for (Edge ed : EdgeList)
         {
-            int a = ed.a, b = ed.b, w = ed.w;
+            int a, b;
+            long long int w;
+            a = ed.a, b = ed.b, w = ed.w;
 
-            if (dis[a] < INT_MAX && dis[a] + w < dis[b])
+            if (dis[a] < LLONG_MAX && dis[a] + w < dis[b])
             {
                 dis[b] = dis[a] + w;
             }
         }
     }
-    bool isCycle = false;
-    for (Edge ed : EdgeList)
-    {
-        int a = ed.a, b = ed.b, w = ed.w;
 
-        if (dis[a] < INT_MAX && dis[a] + w < dis[b])
-        {
-            isCycle = true;
-        }
-    }
-
-    if (isCycle)
-        cout << "Negative Cycle Detected" << endl;
-    else
+    cin >> t;
+    while (t--)
     {
-        cin >> t;
-        while (t--)
-        {
-            int d;
-            cin >> d;
-            d--;
-            if (dis[d] == INT_MAX)
-            {
-                cout << "Not Possible" << endl;
-            }
-            else
-            {
-                cout << dis[d] << endl;
-            }
-        }
+        int d;
+        long long int dw;
+        cin >> d >> dw;
+        if (dis[d - 1] == LLONG_MAX)
+            cout << "NO" << endl;
+        else if (dis[d - 1] <= dw)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
     }
 
     return 0;

@@ -1,11 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int N = 1e6 + 5;
+long long int dis[N];
+
 class Edge
 {
 public:
-    int a, b, w;
-    Edge(int a, int b, int w)
+    int a, b;
+    long long int w;
+    Edge(int a, int b, long long int w)
     {
         this->a = a;
         this->b = b;
@@ -13,14 +17,8 @@ public:
     }
 };
 
-const int N = 1e6 + 5;
-int dis[N];
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     int n, s, t;
     long long int e;
     cin >> n >> e;
@@ -28,14 +26,15 @@ int main()
 
     while (e--)
     {
-        int a, b, w;
+        int a, b;
+        long long int w;
         cin >> a >> b >> w;
         EdgeList.push_back(Edge(a - 1, b - 1, w));
     }
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
-        dis[i] = INT_MAX;
+        dis[i] = LLONG_MAX;
     }
     cin >> s;
     dis[s - 1] = 0;
@@ -44,10 +43,11 @@ int main()
     {
         for (Edge ed : EdgeList)
         {
-            int a, b, w;
+            int a, b;
+            long long int w;
             a = ed.a, b = ed.b, w = ed.w;
 
-            if (dis[a] < INT_MAX && dis[a] + w < dis[b])
+            if (dis[a] < LLONG_MAX && dis[a] + w < dis[b])
             {
                 dis[b] = dis[a] + w;
             }
@@ -57,12 +57,13 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long int d, dw;
+        int d;
+        long long int dw;
         cin >> d >> dw;
-        if (dis[d - 1] <= dw)
-            cout << "YES" << endl;
-        else if (dis[d - 1] == INT_MAX)
+        if (dis[d - 1] == LLONG_MAX)
             cout << "NO" << endl;
+        else if (dis[d - 1] <= dw)
+            cout << "YES" << endl;
         else
             cout << "NO" << endl;
     }

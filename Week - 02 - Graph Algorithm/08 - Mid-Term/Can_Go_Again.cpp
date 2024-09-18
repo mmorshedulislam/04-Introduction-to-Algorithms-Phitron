@@ -2,13 +2,14 @@
 using namespace std;
 
 const int N = 1e6 + 5;
-int dis[N];
+long long int dis[N];
 
 class Edge
 {
 public:
-    int a, b, w;
-    Edge(int a, int b, int w)
+    int a, b;
+    long long int w;
+    Edge(int a, int b, long long int w)
     {
         this->a = a;
         this->b = b;
@@ -25,7 +26,8 @@ int main()
 
     while (e--)
     {
-        int a, b, w;
+        int a, b;
+        long long int w;
         cin >> a >> b >> w;
         a--, b--;
         EdgeList.push_back(Edge(a, b, w));
@@ -33,7 +35,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        dis[i] = INT_MAX;
+        dis[i] = LLONG_MAX;
     }
 
     int s;
@@ -45,9 +47,10 @@ int main()
     {
         for (Edge ed : EdgeList)
         {
-            int a = ed.a, b = ed.b, w = ed.w;
+            int a = ed.a, b = ed.b;
+            long long int w = ed.w;
 
-            if (dis[a] < INT_MAX && dis[a] + w < dis[b])
+            if (dis[a] < LLONG_MAX && dis[a] + w < dis[b])
             {
                 dis[b] = dis[a] + w;
             }
@@ -56,9 +59,10 @@ int main()
     bool isCycle = false;
     for (Edge ed : EdgeList)
     {
-        int a = ed.a, b = ed.b, w = ed.w;
+        int a = ed.a, b = ed.b;
+        long long int w = ed.w;
 
-        if (dis[a] < INT_MAX && dis[a] + w < dis[b])
+        if (dis[a] < LLONG_MAX && dis[a] + w < dis[b])
         {
             isCycle = true;
         }
@@ -74,7 +78,7 @@ int main()
             int d;
             cin >> d;
             d--;
-            if (dis[d] == INT_MAX)
+            if (dis[d] == LLONG_MAX)
             {
                 cout << "Not Possible" << endl;
             }
