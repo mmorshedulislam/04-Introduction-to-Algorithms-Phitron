@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// weight wise shortest distance ber kore with negative value or cycle
+
 class Edge
 {
 public:

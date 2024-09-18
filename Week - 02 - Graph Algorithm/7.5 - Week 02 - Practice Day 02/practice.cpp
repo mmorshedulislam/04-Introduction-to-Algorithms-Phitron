@@ -1,85 +1,117 @@
 #include <bits/stdc++.h>
+#define ll long long int;
 using namespace std;
-
-const int N = 1e5 + 5;
-vector<int> adj[N];
-bool vis[N];
-bool pathVis[N];
-bool isCycle;
-
-void dfs(int parent)
-{
-    vis[parent] = true;
-    pathVis[parent] = true;
-    for (int child : adj[parent])
-    {
-        if (pathVis[child])
-        {
-            isCycle = true;
-        }
-        if (!vis[child])
-        {
-            dfs(child);
-        }
-    }
-    // kaj sesh
-    pathVis[parent] = false;
-};
 
 int main()
 {
     int n, e;
     cin >> n >> e;
-    while (e--)
-    {
-        int a, b;
-        cin >> a >> b;
-        adj[a].push_back(b);
-    }
 
-    memset(vis, false, sizeof(vis));
-    memset(pathVis, false, sizeof(pathVis));
-    isCycle = false;
-
+    long long int mat[n][n];
     for (int i = 0; i < n; i++)
     {
-        if (!vis[i])
+        for (int j = 0; j < n; j++)
         {
-            dfs(i);
+            mat[i][j] = INT_MAX;
+            if (i == j)
+            {
+                mat[i][j] = 0;
+            }
+        }
+    }
+
+    while (e--)
+    {
+        int a, b, c;
+        cin >> a >> b >> c;
+        mat[a][b] = c;
+    }
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = 0; j < n; j++)
+    //     {
+    //         if (adj[i][j] == INT_MAX)
+    //         {
+    //             cout << "INF" << " ";
+    //         }
+    //         else
+    //             cout << adj[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    for (int k = 0; k < n; k++)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (mat[i][k] + mat[k][j] < mat[i][j])
+                {
+                    mat[i][j] = mat[i][k] + mat[k][j];
+                }
+            }
+        }
+    }
+
+    bool isCycle = false;
+
+    // CYCLE DETECTED
+    for (int i = 0; i < n; i++)
+    {
+        if (mat[i][i] < 0)
+        {
+            isCycle = true;
+            break;
         }
     }
 
     if (isCycle)
+    {
         cout << "Cycle Detected" << endl;
+    }
     else
-        cout << "Cycle Not Detected" << endl;
+    {
+        // COSTS
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (mat[i][j] == INT_MAX)
+                {
+                    cout << "INF" << " ";
+                }
+                else
+                    cout << mat[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
 
     return 0;
 }
 
 // INPUT
-// 7 8
-// 5 6
-// 4 5
-// 0 4
-// 0 6
-// 1 0
-// 1 2
-// 2 3
-// 3 1
+// 4 6
+// 3 2 8
+// 2 1 5
+// 1 0 2
+// 3 0 20
+// 0 1 3
+// 1 2 2
+
+// OUTPUT
+// 0 3 5 INF
+// 2 0 2 INF
+// 7 5 0 INF
+// 15 13 8 0
+
+// INPUT
+// 3 3
+// 0 1 -5
+// 1 2 3
+// 2 0 -1
 
 // OUTPUT
 // Cycle Detected
-
-// INPUT
-// 7 7
-// 5 6
-// 4 5
-// 0 4
-// 0 6
-// 1 0
-// 1 2
-// 2 3
-
-// OUTPUT
-// Cycle Not Detected

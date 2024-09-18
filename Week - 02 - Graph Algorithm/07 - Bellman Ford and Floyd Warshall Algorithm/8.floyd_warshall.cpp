@@ -7,15 +7,15 @@ int main()
     int n, e;
     cin >> n >> e;
 
-    long long int adj[n][n];
+    long long int mat[n][n];
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            adj[i][j] = INT_MAX;
+            mat[i][j] = INT_MAX;
             if (i == j)
             {
-                adj[i][j] = 0;
+                mat[i][j] = 0;
             }
         }
     }
@@ -24,7 +24,7 @@ int main()
     {
         int a, b, c;
         cin >> a >> b >> c;
-        adj[a][b] = c;
+        mat[a][b] = c;
     }
 
     // for (int i = 0; i < n; i++)
@@ -47,9 +47,9 @@ int main()
         {
             for (int j = 0; j < n; j++)
             {
-                if (adj[i][k] + adj[k][j] < adj[i][j])
+                if (mat[i][k] + mat[k][j] < mat[i][j])
                 {
-                    adj[i][j] = adj[i][k] + adj[k][j];
+                    mat[i][j] = mat[i][k] + mat[k][j];
                 }
             }
         }
@@ -60,7 +60,7 @@ int main()
     // CYCLE DETECTED
     for (int i = 0; i < n; i++)
     {
-        if (adj[i][i] < 0)
+        if (mat[i][i] < 0)
         {
             isCycle = true;
             break;
@@ -78,12 +78,12 @@ int main()
         {
             for (int j = 0; j < n; j++)
             {
-                if (adj[i][j] == INT_MAX)
+                if (mat[i][j] == INT_MAX)
                 {
                     cout << "INF" << " ";
                 }
                 else
-                    cout << adj[i][j] << " ";
+                    cout << mat[i][j] << " ";
             }
             cout << endl;
         }

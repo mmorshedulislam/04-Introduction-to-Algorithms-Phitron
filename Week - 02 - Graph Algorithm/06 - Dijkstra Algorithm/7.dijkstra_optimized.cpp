@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// weight wise shortest distance ber kore (optimized) without negative value or cycle
+
 int const N = 100;
-vector<pair<int, int>> v[N];
+vector<pair<int, int>> edgeList[N];
 int dis[N];
 
 class cmp
@@ -29,7 +31,7 @@ void dijkstra(int src) // O((E+V)*LogV)) = O(ELogV)
         int node = parent.first;
         int cost = parent.second;
 
-        for (pair<int, int> child : v[node])
+        for (pair<int, int> child : edgeList[node])
         {
             int childNode = child.first;
             int childCost = child.second;
@@ -52,8 +54,8 @@ int main()
     {
         int a, b, c;
         cin >> a >> b >> c;
-        v[a].push_back({b, c});
-        v[b].push_back({a, c});
+        edgeList[a].push_back({b, c});
+        edgeList[b].push_back({a, c});
     }
     for (int i = 0; i < n; i++)
     {
@@ -64,7 +66,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        cout << i << " -> " << dis[i] << endl;
+        cout << "N " << i << " -> " << "W " << dis[i] << endl;
     }
 
     return 0;
@@ -81,8 +83,8 @@ int main()
 // 3 2 1
 
 // OUTPUT
-// 0 -> 0
-// 1 -> 6
-// 2 -> 5
-// 3 -> 4
-// 4 -> 9
+// N 0 -> W 0
+// N 1 -> W 6
+// N 2 -> W 5
+// N 3 -> W 4
+// N 4 -> W 9
