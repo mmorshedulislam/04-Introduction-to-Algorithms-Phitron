@@ -1,20 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Step
-{
-    int x, y, steps;
-    Step(int x, int y, int steps)
-    {
-        this->x = x;
-        this->y = y;
-        this->steps = steps;
-    };
-};
+vector<pair<int, int>> moves = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
 
 int minStepsToQueen(int n, int m, int ki, int kj, int qi, int qj)
 {
-    if (qi == ki && qj == kj)
+    if (ki == qi && kj == qj)
     {
         return 0;
     }
@@ -28,23 +19,42 @@ int minStepsToQueen(int n, int m, int ki, int kj, int qi, int qj)
     while (!q.empty())
     {
         pair<pair<int, int>, int> par = q.front();
+        q.pop();
         int x, y, steps;
         x = par.first.first;
         y = par.first.second;
         steps = par.second;
+
+        for (int i = 0; i < 8; i++)
+        {
+            int ci = x + moves[i].first;
+            int cj = y + moves[i].second;
+
+            if (ci >= 0 && cj >= 0 && ci < n && cj < m && !vis[ci][cj])
+            {
+                if (ci == qi && cj == qj)
+                {
+                    return steps + 1;
+                }
+
+                vis[ci][cj] = true;
+                q.push({{ci, cj}, steps + 1});
+            }
+        }
     }
+
+    return -1;
 };
 
 int main()
 {
     int t;
-    cin >> t; // Number of test cases
+    cin >> t;
     while (t--)
     {
         int n, m, ki, kj, qi, qj;
         cin >> n >> m >> ki >> kj >> qi >> qj;
 
-        // Output the result for the current test case
         cout << minStepsToQueen(n, m, ki, kj, qi, qj) << endl;
     }
     return 0;
