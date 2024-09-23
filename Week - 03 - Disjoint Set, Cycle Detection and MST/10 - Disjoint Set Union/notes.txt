@@ -2,3 +2,6 @@ Disjoint Set Union (DSU) -> Union find Algorithm
 
 10.3 
 https://cp-algorithms.com/data_structures/disjoint_set_union.html
+
+Some questions
+https://docs.google.com/document/d/1X31g-leGREp1r63WuzFU5iL9gaNkWAibkVxfKd2ImhA/edit
