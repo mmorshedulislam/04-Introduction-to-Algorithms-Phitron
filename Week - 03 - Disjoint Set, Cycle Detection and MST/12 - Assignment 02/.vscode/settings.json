@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.c": "c",
+        "*.cpp": "cpp",
+        "ostream": "cpp",
+        "ios": "cpp",
+        "tuple": "cpp"
+    }
+}
