@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fibo(int n)
+// Top Down approach
+
+int fibo(int n) // 2^N
 {
     if (n == 0 || n == 1)
         return n;
