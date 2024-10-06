@@ -3,14 +3,14 @@ using namespace std;
 
 int knapsack(int n, int weight[], int value[], int W)
 {
-
-    if (n < 0 || W == 0)
+    if (n == 0 || W == 0)
         return 0;
+        
     if (weight[n] <= W)
     {
         // duita option
         // niye dekbo, na niye dekbo
-        int opt1 = knapsack(n - 1, weight, value, W - weight[n]) + value[n];
+        int opt1 = knapsack(n - 1, weight, value, W - weight[n - 1]) + value[n - 1];
 
         int opt2 = knapsack(n - 1, weight, value, W);
 
@@ -41,7 +41,7 @@ int main()
     }
     int W;
     cin >> W;
-    cout << knapsack(n - 1, weight, value, W) << endl;
+    cout << knapsack(n, weight, value, W) << endl;
 
     return 0;
 }
