@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.c": "c",
+        "*.cpp": "cpp",
+        "utility": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp"
+    }
+}
